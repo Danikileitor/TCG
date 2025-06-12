@@ -7,9 +7,6 @@ const baseTitle = "[DNK]{TCG}"
 
 export const routes: Routes = [
     {
-        path: '', title: baseTitle, component: AppComponent
-    },
-    {
         path: 'scryfall', title: baseTitle + "[MTG]", component: ScryfallComponent, children: [
             {
                 path: 'random', title: baseTitle + "[MTG - Random]", component: ScryfallRandomComponent
