@@ -8,6 +8,7 @@ export interface Card {
     tcgplayer_id: number;
     cardmarket_id: number;
     name: string;
+    printed_name: string;
     lang: string;
     released_at: Date;
     uri: string;
@@ -19,7 +20,9 @@ export interface Card {
     mana_cost: string;
     cmc: number;
     type_line: string;
+    printed_type_line: string;
     oracle_text: string;
+    printed_text: string;
     power: string;
     toughness: string;
     colors: string[];
@@ -62,6 +65,7 @@ export interface Card {
     booster: boolean;
     story_spotlight: boolean;
     edhrec_rank: number;
+    penny_rank: number;
     prices: Prices;
     related_uris: RelatedUris;
     purchase_uris: PurchaseUris;
@@ -113,7 +117,7 @@ export interface Legalities {
 export interface Prices {
     usd: string;
     usd_foil: string;
-    usd_etched: null;
+    usd_etched: string;
     eur: string;
     eur_foil: string;
     tix: string;

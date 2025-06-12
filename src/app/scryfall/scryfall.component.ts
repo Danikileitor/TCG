@@ -12,13 +12,15 @@ export class ScryfallComponent {
   carta = signal<Card | null>(null)
 
   constructor(private readonly service: ScryfallService) {
-    this.getRandom()
+    this.getRandom('es')
   }
 
-  async getRandom() {
-    this.service.getRandom().subscribe({
+  async getRandom(idioma?: string) {
+    this.service.getRandom(idioma).subscribe({
       next: (random) => {
         this.carta.set(random)
+        console.log(random);
+
       }
     })
   }

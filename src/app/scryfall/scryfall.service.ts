@@ -11,7 +11,11 @@ export class ScryfallService {
 
   }
 
-  getRandom() {
-    return this.httpclient.get<Card>('https://api.scryfall.com/cards/random')
+  getRandom(idioma?: string) {
+    if (idioma) {
+      return this.httpclient.get<Card>('https://api.scryfall.com/cards/random?q=lang:' + idioma)
+    } else {
+      return this.httpclient.get<Card>('https://api.scryfall.com/cards/random')
+    }
   }
 }
