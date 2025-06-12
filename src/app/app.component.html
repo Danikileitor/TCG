@@ -1,7 +1,27 @@
-<nav>
-  <ul>
-    <li><a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
-    <li><a routerLink="/scryfall" routerLinkActive="active" ariaCurrentWhenActive="page">MTG</a></li>
-  </ul>
-</nav>
+<ul class="container">
+  <nav class="nav">
+    <ul class="nav--list">
+      <li class="item">
+        <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page" class="item--wrapper"
+          data-item="home">Home</a>
+      </li>
+      <li class="item">
+        <a routerLink="/scryfall" routerLinkActive="active" ariaCurrentWhenActive="page" class="item--wrapper"
+          data-item="mtg">MTG</a>
+      </li>
+      <li class="item">
+        <a routerLink="/digimon" routerLinkActive="active" ariaCurrentWhenActive="page" class="item--wrapper"
+          data-item="digimon">Digimon</a>
+      </li>
+      <li class="item">
+        <a routerLink="#" routerLinkActive="active" ariaCurrentWhenActive="page" class="item--wrapper"
+          data-item="about">About</a>
+      </li>
+      <li class="item">
+        <a routerLink="#" routerLinkActive="active" ariaCurrentWhenActive="page" class="item--wrapper"
+          data-item="contact">Contact</a>
+      </li>
+    </ul>
+  </nav>
+</ul>
 <router-outlet />
