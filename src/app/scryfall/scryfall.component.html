@@ -1,2 +1,19 @@
-<h1>{{carta()?.printed_name}}</h1>
-<img [src]="carta()?.image_uris?.small">
+<ul class="container">
+    <nav class="nav">
+        <ul class="nav--list">
+            <li class="item">
+                <a routerLink="./random" routerLinkActive="active" ariaCurrentWhenActive="page" class="item--wrapper"
+                    data-item="random">Random</a>
+            </li>
+            <li class="item">
+                <a routerLink="#" routerLinkActive="active" ariaCurrentWhenActive="page" class="item--wrapper"
+                    data-item="buscar">Buscar</a>
+            </li>
+            <li class="item">
+                <a routerLink="#" routerLinkActive="active" ariaCurrentWhenActive="page" class="item--wrapper"
+                    data-item="???">???</a>
+            </li>
+        </ul>
+    </nav>
+</ul>
+<router-outlet />

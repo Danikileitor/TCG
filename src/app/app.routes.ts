@@ -1,6 +1,19 @@
 import { Routes } from '@angular/router';
 import { ScryfallComponent } from './scryfall/scryfall.component';
+import { ScryfallRandomComponent } from './scryfall/random/random.component';
+import { AppComponent } from './app.component';
 
-export const routes: Routes = [{
-    path: 'scryfall', component: ScryfallComponent
-}];
+const baseTitle = "[DNK]{TCG}"
+
+export const routes: Routes = [
+    {
+        path: '', title: baseTitle, component: AppComponent
+    },
+    {
+        path: 'scryfall', title: baseTitle + "[MTG]", component: ScryfallComponent, children: [
+            {
+                path: 'random', title: baseTitle + "[MTG - Random]", component: ScryfallRandomComponent
+            }
+        ]
+    }
+];
