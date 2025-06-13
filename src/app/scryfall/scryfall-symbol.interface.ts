@@ -1,4 +1,4 @@
-export interface Symbol {
+export interface ScryfallSymbol {
     object: string;
     has_more: boolean;
     data: Datum[];

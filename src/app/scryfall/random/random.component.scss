@@ -19,4 +19,14 @@ h2 {
 
 .datos {
     list-style-type: none;
+
+    li {
+        display: flex;
+
+        img {
+            display: inline-block;
+            height: 1em;
+            width: auto;
+        }
+    }
 }

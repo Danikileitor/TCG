@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { ScryfallService } from './scryfall.service';
+import { ScryfallSymbol } from './scryfall-symbol.interface';
 
 @Component({
   selector: 'app-scryfall',
@@ -9,9 +10,9 @@ import { ScryfallService } from './scryfall.service';
   styleUrl: './scryfall.component.scss'
 })
 export class ScryfallComponent {
-  symbol = signal<Symbol | null>(null)
+  symbol = signal<ScryfallSymbol | null>(null)
 
-  constructor(private readonly service: ScryfallService) {
+  constructor(readonly service: ScryfallService) {
     this.getSymbology()
   }
 
