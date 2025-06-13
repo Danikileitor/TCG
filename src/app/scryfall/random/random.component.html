@@ -1,2 +1,15 @@
-<h1>{{carta()?.printed_name}}</h1>
-<img [src]="carta()?.image_uris?.small">
+<div class="containerRandom">
+    <h2>{{carta()?.printed_name}}</h2>
+    <div class="carta">
+        <div class="left">
+            <img [src]="carta()?.image_uris?.png" width="146px" height="204px" alt="{{carta()?.printed_name}}">
+        </div>
+        <div class="right">
+            <ul class="datos">
+                <li>Coste:&emsp;{{carta()?.mana_cost}}</li>
+                <li>Dato 2</li>
+                <li>Dato 3</li>
+            </ul>
+        </div>
+    </div>
+</div>

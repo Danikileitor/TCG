@@ -20,7 +20,6 @@ export class ScryfallRandomComponent {
       next: (random) => {
         this.carta.set(random)
         console.log(random);
-
       }
     })
   }

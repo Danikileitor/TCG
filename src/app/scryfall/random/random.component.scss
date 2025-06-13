@@ -1,0 +1,22 @@
+h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+.containerRandom {
+    background-color: rgba($color: whitesmoke, $alpha: 0.5);
+    margin: auto;
+    width: fit-content;
+    padding: 1rem;
+    border: 1em solid rgba($color: black, $alpha: 0.8);
+    border-radius: 5%;
+}
+
+.carta {
+    display: flex;
+    gap: 2em;
+}
+
+.datos {
+    list-style-type: none;
+}
