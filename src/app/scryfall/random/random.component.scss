@@ -5,6 +5,18 @@ h2 {
     margin-bottom: 0.5em;
 }
 
+hr {
+    margin: 0.5em 0;
+    border-width: 0 0 1px;
+    $color: skyblue;
+    color: $color;
+    border-image: linear-gradient(90deg,
+            rgba($color, 0),
+            rgba($color, 1) 50%,
+            rgba($color, 0) 100%) 0 0 100%;
+    border-style: solid;
+}
+
 .containerRandom {
     background-color: rgba($color: whitesmoke, $alpha: 0.5);
     margin: auto;
@@ -22,16 +34,6 @@ h2 {
 
 .datos {
     list-style-type: none;
-
-    li {
-        display: flex;
-
-        img {
-            display: inline-block;
-            height: 1em;
-            width: auto;
-        }
-    }
 }
 
 mat-chip {

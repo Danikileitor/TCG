@@ -4,10 +4,12 @@ import { Card } from '../scryfall-card.interface';
 import { ScryfallService } from '../scryfall.service';
 import { Datum, ScryfallSymbol } from '../scryfall-symbol.interface';
 import { MatChipsModule } from '@angular/material/chips';
+import { RecordatoriosPipe } from '../../pipes/recordatorios.pipe';
+import { SimboloPipe } from '../../pipes/simbolo.pipe';
 
 @Component({
   selector: 'app-scryfall-random',
-  imports: [MatChipsModule],
+  imports: [MatChipsModule, RecordatoriosPipe, SimboloPipe],
   templateUrl: './random.component.html',
   styleUrl: './random.component.scss'
 })

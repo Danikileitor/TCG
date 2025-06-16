@@ -82,3 +82,13 @@ body {
 .item:hover .item--wrapper {
     transform: translateY(50px) rotateX(90deg);
 }
+
+.cursiva {
+    font-style: italic;
+}
+
+.simbolos {
+    display: inline-block;
+    height: 1em;
+    width: auto;
+}

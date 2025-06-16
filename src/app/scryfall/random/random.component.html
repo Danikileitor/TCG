@@ -6,10 +6,18 @@
         </div>
         <div class="right">
             <ul class="datos">
-                <li>@for (coste of coste(); track coste){<img [src]="coste.svg_uri" [alt]="coste.symbol" />}</li>
+                <li>@for (coste of coste(); track coste){<img class="simbolos" [src]="coste.svg_uri"
+                        [alt]="coste.symbol" />}</li>
                 <li>{{carta()?.printed_type_line}}</li>
-                <li>{{carta()?.printed_text}}</li>
-                <li>{{carta()?.flavor_text}}</li>
+                @if (simbolos()) {
+                <li [innerHTML]="carta()?.printed_text || '' | recordatoriosPipe | simboloPipe:simbolos()"></li>
+                } @else {
+                <li [innerHTML]="carta()?.printed_text || '' | recordatoriosPipe"></li>
+                }
+                @if (carta()?.flavor_text) {
+                <hr>
+                <li class="cursiva">{{carta()?.flavor_text}}</li>
+                }
                 <li>✒️{{carta()?.artist}}</li>
                 <li>
                     <mat-chip-set aria-label="Fish selection">
