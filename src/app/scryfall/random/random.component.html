@@ -11,7 +11,14 @@
                 <li>{{carta()?.printed_text}}</li>
                 <li>{{carta()?.flavor_text}}</li>
                 <li>{{carta()?.artist}}</li>
-                <li>{{carta()?.legalities?.commander}}</li>
+                <li>
+                    <mat-chip-set aria-label="Fish selection">
+                        <mat-chip>{{carta()?.legalities?.commander}}</mat-chip>
+                        <mat-chip>{{carta()?.legalities?.commander}}</mat-chip>
+                        <mat-chip>{{carta()?.legalities?.commander}}</mat-chip>
+                        <mat-chip>{{carta()?.legalities?.commander}}</mat-chip>
+                    </mat-chip-set>
+                </li>
             </ul>
         </div>
     </div>
