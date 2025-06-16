@@ -14,7 +14,8 @@ import { MatChipsModule } from '@angular/material/chips';
 export class ScryfallRandomComponent {
   carta = signal<Card | null>(null)
   simbolos = signal<ScryfallSymbol | null>(null)
-  coste = signal<Datum[]>([]);
+  coste = signal<Datum[]>([])
+  legalidades = signal<String[][]>([])
 
   constructor(readonly service: ScryfallRandomService, readonly serviceSymbol: ScryfallService) {
     this.getSymbology()
@@ -26,6 +27,8 @@ export class ScryfallRandomComponent {
       next: (random) => {
         this.carta.set(random)
         this.getCoste()
+        this.legalidades.set(Object.entries(random.legalities))
+        console.log(this.legalidades())
         console.log(this.carta());
       }
     })

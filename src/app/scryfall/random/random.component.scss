@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 h2 {
     font-size: 2em;
     margin-bottom: 0.5em;
@@ -6,7 +8,7 @@ h2 {
 .containerRandom {
     background-color: rgba($color: whitesmoke, $alpha: 0.5);
     margin: auto;
-    width: fit-content;
+    width: 70%;
     padding: 1rem;
     border: 1em solid rgba($color: black, $alpha: 0.8);
     border-radius: 5%;
@@ -15,6 +17,7 @@ h2 {
 .carta {
     display: flex;
     gap: 2em;
+    white-space: pre-wrap;
 }
 
 .datos {
@@ -29,4 +32,20 @@ h2 {
             width: auto;
         }
     }
+}
+
+mat-chip {
+    height: 1em;
+    margin: 0;
+    font-size: small;
+}
+
+.legal {
+    @include mat.chips-overrides((outline-color: green, elevated-container-color: green));
+    color: whitesmoke;
+}
+
+.not_legal {
+    @include mat.chips-overrides((outline-color: gray, elevated-container-color: gray));
+    color: whitesmoke;
 }
