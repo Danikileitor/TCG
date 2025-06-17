@@ -1,6 +1,5 @@
 import { Component, signal, WritableSignal } from '@angular/core';
-import { ScryfallRandomService } from './random.service';
-import { Card } from '../scryfall-card.interface';
+import { Card, CardFace } from '../scryfall-card.interface';
 import { ScryfallService } from '../scryfall.service';
 import { Datum, ScryfallSymbol } from '../scryfall-symbol.interface';
 import { MatChipsModule } from '@angular/material/chips';
@@ -14,51 +13,75 @@ import { SimboloPipe } from '../../pipes/simbolo.pipe';
   styleUrl: './random.component.scss'
 })
 export class ScryfallRandomComponent {
-  carta = signal<Card | null>(null)
   simbolos = signal<ScryfallSymbol | null>(null)
+  carta = signal<Card | null>(null)
   coste = signal<Datum[]>([])
+  identidad = signal<Datum[]>([])
   legalidades = signal<String[][]>([])
+  caras = signal<CardFace[]>([])
+  mostrarCaraFrontal = true
 
-  constructor(readonly service: ScryfallRandomService, readonly serviceSymbol: ScryfallService) {
+  constructor(readonly service: ScryfallService) {
     this.getSymbology()
     this.getRandom('es')
   }
 
-  async getRandom(idioma?: string) {
-    this.service.getRandom(idioma).subscribe({
-      next: (random) => {
-        this.carta.set(random)
-        this.getCoste()
-        this.legalidades.set(Object.entries(random.legalities))
-        console.log(this.legalidades())
-        console.log(this.carta());
-      }
-    })
-  }
-
   async getSymbology() {
-    this.serviceSymbol.getSymbology().subscribe({
+    this.service.getSymbology().subscribe({
       next: (simbolos) => {
         this.simbolos.set(simbolos)
-        console.log(this.simbolos())
       }
     })
   }
 
-  parseCost(cost: string | undefined): string[] {
+  async getRandom(idioma?: string) {
+    this.service.getRandom(idioma).subscribe({
+      next: (carta) => {
+        this.carta.set(carta)
+        if (typeof carta.card_faces !== 'undefined') {
+          this.caras.set(carta.card_faces)
+          if (typeof carta.card_faces[0].image_uris !== 'undefined') {
+            this.getCoste(carta.card_faces[0].mana_cost)
+          } else {
+            this.getCoste(carta.mana_cost)
+          }
+        } else {
+          this.getCoste(carta.mana_cost)
+        }
+        this.getIdentidad(carta.color_identity)
+        this.legalidades.set(Object.entries(carta.legalities))
+        console.log(this.carta())
+      }
+    })
+  }
+
+  parseCost(cost: string): string[] {
     if (cost) {
-      const regex = /{[^}]+}/g;
-      return cost.match(regex) || [];
+      const regex = /{[^}]+}/g
+      return cost.match(regex) || []
     } else {
       return new Array()
     }
   }
 
-  getCoste() {
-    let mana = this.parseCost(this.carta()?.mana_cost)
+  getCoste(cost: string) {
+    let mana = this.parseCost(cost)
     const simbolos = mana.map((mana) => {
-      return this.simbolos()?.data?.find((s) => s.symbol === mana);
-    });
+      return this.simbolos()?.data?.find((s) => s.symbol === mana)
+    })
     this.coste.set(simbolos as Datum[])
+  }
+
+  getIdentidad(colores: String[]) {
+    const simbolos = colores.length > 0 ? colores.map((color) => {
+      return this.simbolos()?.data?.find((s) => s.symbol == '{' + color + '}')
+    }) : new Array(this.simbolos()?.data?.find((s) => s.symbol == '{C}'))
+    this.identidad.set(simbolos as Datum[])
+  }
+
+  voltear() {
+    if (this.caras()) {
+      this.mostrarCaraFrontal = !this.mostrarCaraFrontal;
+    }
   }
 }

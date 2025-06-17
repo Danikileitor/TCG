@@ -23,6 +23,7 @@ export interface Card {
     printed_type_line: string;
     oracle_text: string;
     printed_text: string;
+    card_faces: CardFace[];
     power: string;
     toughness: string;
     colors: string[];
@@ -87,6 +88,26 @@ export interface ImageUris {
     png: string;
     art_crop: string;
     border_crop: string;
+}
+
+export interface CardFace {
+    object: string;
+    name: string;
+    printed_name: string;
+    mana_cost: string;
+    type_line: string;
+    printed_type_line: string;
+    oracle_text: string;
+    printed_text: string;
+    colors: string[];
+    power: string;
+    toughness: string;
+    flavor_text: string;
+    artist: string;
+    artist_id: string;
+    illustration_id: string;
+    image_uris: ImageUris;
+    color_indicator: string[];
 }
 
 export interface Legalities {

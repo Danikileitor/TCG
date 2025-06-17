@@ -6,7 +6,6 @@ h2 {
 }
 
 hr {
-    margin: 0.5em 0;
     border-width: 0 0 1px;
     $color: skyblue;
     color: $color;
@@ -15,6 +14,11 @@ hr {
             rgba($color, 1) 50%,
             rgba($color, 0) 100%) 0 0 100%;
     border-style: solid;
+}
+
+.titulo {
+    display: flex;
+    justify-content: space-between;
 }
 
 .containerRandom {
@@ -29,11 +33,14 @@ hr {
 .carta {
     display: flex;
     gap: 2em;
-    white-space: pre-wrap;
 }
 
 .datos {
     list-style-type: none;
+    white-space: pre-wrap;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
 }
 
 mat-chip {

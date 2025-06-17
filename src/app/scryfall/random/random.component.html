@@ -1,19 +1,32 @@
 <div class="containerRandom">
-    <h2>{{carta()?.printed_name}}</h2>
+    <div class="titulo">
+        <h2>{{carta()?.printed_name}}</h2>
+        <h2>@for (color of identidad(); track $index){<img class="simbolos" [src]="color.svg_uri"
+                [alt]="color.symbol" />}</h2>
+    </div>
     <div class="carta">
         <div class="left">
+            @if (caras().length > 0) {
+            <img [src]="mostrarCaraFrontal ? caras()[0].image_uris.png : caras()[1].image_uris.png" width="219px"
+                height="306px" alt="{{ mostrarCaraFrontal ? caras()[0].printed_name : caras()[1].printed_name }}"
+                (click)="voltear()">
+            }@else{
             <img [src]="carta()?.image_uris?.png" width="219px" height="306px" alt="{{carta()?.printed_name}}">
+            }
         </div>
         <div class="right">
             <ul class="datos">
-                <li>@for (coste of coste(); track coste){<img class="simbolos" [src]="coste.svg_uri"
+                <li>@for (coste of coste(); track $index){<img class="simbolos" [src]="coste.svg_uri"
                         [alt]="coste.symbol" />}</li>
                 <li>{{carta()?.printed_type_line}}</li>
                 @if (simbolos()) {
+                @if (caras().length > 0){
+                <li [innerHTML]="caras()[0].printed_text || '' | recordatoriosPipe | simboloPipe:simbolos()"></li>
+                }@else if (carta()?.printed_text) {
                 <li [innerHTML]="carta()?.printed_text || '' | recordatoriosPipe | simboloPipe:simbolos()"></li>
-                } @else {
-                <li [innerHTML]="carta()?.printed_text || '' | recordatoriosPipe"></li>
-                }
+                }@else {
+                <li [innerHTML]="carta()?.oracle_text || '' | recordatoriosPipe | simboloPipe:simbolos()"></li>
+                }}
                 @if (carta()?.flavor_text) {
                 <hr>
                 <li class="cursiva">{{carta()?.flavor_text}}</li>
