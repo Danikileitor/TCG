@@ -43,7 +43,10 @@ export class ScryfallRandomComponent {
           this.caras.set(carta.card_faces)
           if (typeof carta.card_faces[0].image_uris !== 'undefined') {
             this.getCoste(carta.card_faces[0].mana_cost)
-            this.getCoste2(carta.card_faces[0].mana_cost)
+            this.getCoste2(carta.card_faces[1].mana_cost)
+          } else if (carta.layout === 'adventure') {
+            this.getCoste(carta.card_faces[0].mana_cost)
+            this.getCoste2(carta.card_faces[1].mana_cost)
           } else {
             this.getCoste(carta.mana_cost)
           }
