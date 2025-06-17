@@ -30,7 +30,7 @@
                 "glob": "**/*",
                 "input": "public"
               },
-              "_redirects"
+              "src/_redirects"
             ],
             "styles": [
               "src/styles.scss"
