@@ -16,6 +16,7 @@ export class ScryfallRandomComponent {
   simbolos = signal<ScryfallSymbol | null>(null)
   carta = signal<Card | null>(null)
   coste = signal<Datum[]>([])
+  coste2 = signal<Datum[]>([])
   identidad = signal<Datum[]>([])
   legalidades = signal<String[][]>([])
   caras = signal<CardFace[]>([])
@@ -42,6 +43,7 @@ export class ScryfallRandomComponent {
           this.caras.set(carta.card_faces)
           if (typeof carta.card_faces[0].image_uris !== 'undefined') {
             this.getCoste(carta.card_faces[0].mana_cost)
+            this.getCoste2(carta.card_faces[0].mana_cost)
           } else {
             this.getCoste(carta.mana_cost)
           }
@@ -70,6 +72,14 @@ export class ScryfallRandomComponent {
       return this.simbolos()?.data?.find((s) => s.symbol === mana)
     })
     this.coste.set(simbolos as Datum[])
+  }
+
+  getCoste2(cost: string) {
+    let mana = this.parseCost(cost)
+    const simbolos = mana.map((mana) => {
+      return this.simbolos()?.data?.find((s) => s.symbol === mana)
+    })
+    this.coste2.set(simbolos as Datum[])
   }
 
   getIdentidad(colores: String[]) {
