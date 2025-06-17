@@ -26,31 +26,35 @@
                 <li>@for (coste of coste(); track $index){<img class="simbolos" [src]="coste.svg_uri"
                         [alt]="coste.symbol" />}</li>
                 <li>{{caras()[0].printed_type_line}}</li>
-                <li [innerHTML]="caras()[0].printed_text || '' | recordatoriosPipe | simboloPipe:simbolos()"></li>
+                <li
+                    [innerHTML]="caras()[0].printed_text || caras()[0].oracle_text | recordatoriosPipe | simboloPipe:simbolos()">
+                </li>
                 @if (carta()?.layout === 'adventure') {
                 <hr>
                 <li>@for (coste of coste2(); track $index){<img class="simbolos" [src]="coste.svg_uri"
                         [alt]="coste.symbol" />}</li>
                 <li>{{caras()[1].printed_type_line}}</li>
-                <li [innerHTML]="caras()[1].printed_text || '' | recordatoriosPipe | simboloPipe:simbolos()"></li>
+                <li
+                    [innerHTML]="caras()[1].printed_text || caras()[1].oracle_text | recordatoriosPipe | simboloPipe:simbolos()">
+                </li>
                 }
                 }@else {
                 <li>@for (coste of coste2(); track $index){<img class="simbolos" [src]="coste.svg_uri"
                         [alt]="coste.symbol" />}</li>
                 <li>{{caras()[1].printed_type_line}}</li>
-                <li [innerHTML]="caras()[1].printed_text || '' | recordatoriosPipe | simboloPipe:simbolos()"></li>
+                <li
+                    [innerHTML]="caras()[1].printed_text || caras()[1].oracle_text | recordatoriosPipe | simboloPipe:simbolos()">
+                </li>
                 }
-                }@else if (carta()?.printed_text) {
-                <li>@for (coste of coste(); track $index){<img class="simbolos" [src]="coste.svg_uri"
-                        [alt]="coste.symbol" />}</li>
-                <li>{{carta()?.printed_type_line}}</li>
-                <li [innerHTML]="carta()?.printed_text || '' | recordatoriosPipe | simboloPipe:simbolos()"></li>
                 }@else {
                 <li>@for (coste of coste(); track $index){<img class="simbolos" [src]="coste.svg_uri"
                         [alt]="coste.symbol" />}</li>
-                <li>{{carta()?.type_line}}</li>
-                <li [innerHTML]="carta()?.oracle_text || '' | recordatoriosPipe | simboloPipe:simbolos()"></li>
-                }}
+                <li>{{carta()?.printed_type_line || carta()?.type_line}}</li>
+                <li
+                    [innerHTML]="carta()?.printed_text || carta()?.oracle_text || '' | recordatoriosPipe | simboloPipe:simbolos()">
+                </li>
+                }
+                }
                 @if (carta()?.flavor_text) {
                 <hr>
                 <li class="cursiva">{{carta()?.flavor_text}}</li>

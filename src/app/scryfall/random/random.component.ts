@@ -5,6 +5,7 @@ import { Datum, ScryfallSymbol } from '../scryfall-symbol.interface';
 import { MatChipsModule } from '@angular/material/chips';
 import { RecordatoriosPipe } from '../../pipes/recordatorios.pipe';
 import { SimboloPipe } from '../../pipes/simbolo.pipe';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-scryfall-random',
@@ -23,16 +24,12 @@ export class ScryfallRandomComponent {
   mostrarCaraFrontal = true
 
   constructor(readonly service: ScryfallService) {
-    this.getSymbology()
-    this.getRandom('es')
+    this.cargarDatos()
   }
 
-  async getSymbology() {
-    this.service.getSymbology().subscribe({
-      next: (simbolos) => {
-        this.simbolos.set(simbolos)
-      }
-    })
+  async cargarDatos() {
+    this.simbolos.set(await firstValueFrom(this.service.getSymbology()))
+    this.getRandom()
   }
 
   async getRandom(idioma?: string) {
