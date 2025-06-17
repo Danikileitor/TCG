@@ -8,9 +8,7 @@ import { Card } from './scryfall-card.interface';
 })
 export class ScryfallService {
 
-  constructor(private readonly httpclient: HttpClient) {
-
-  }
+  constructor(private readonly httpclient: HttpClient) { }
 
   getSymbology() {
     return this.httpclient.get<ScryfallSymbol>('https://api.scryfall.com/symbology')
@@ -21,6 +19,14 @@ export class ScryfallService {
       return this.httpclient.get<Card>('https://api.scryfall.com/cards/random?q=lang:' + idioma)
     } else {
       return this.httpclient.get<Card>('https://api.scryfall.com/cards/random')
+    }
+  }
+
+  getRandomAdventure(idioma?: string) {
+    if (idioma) {
+      return this.httpclient.get<Card>('https://api.scryfall.com/cards/random?q=type:adventure+lang:' + idioma)
+    } else {
+      return this.httpclient.get<Card>('https://api.scryfall.com/cards/random?q=type:adventure')
     }
   }
 
