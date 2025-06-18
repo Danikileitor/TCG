@@ -46,7 +46,7 @@ export class ScryfallRandomComponent {
   }
 
   async getRandom(idioma?: string) {
-    this.service.getCaras(idioma).subscribe({
+    this.service.getRandom(idioma).subscribe({
       next: (carta) => {
         this.carta.set(carta)
         if (typeof carta.card_faces !== 'undefined') {
