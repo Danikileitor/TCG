@@ -58,6 +58,10 @@ hr {
                 backface-visibility: hidden;
             }
 
+            .frente {
+                transform: rotateY(0deg);
+            }
+
             .detras {
                 transform: rotateY(180deg);
             }

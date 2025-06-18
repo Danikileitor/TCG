@@ -13,7 +13,7 @@
             @if (caras().length > 0 && typeof caras()[0].image_uris !== 'undefined') {
             <!-- Carta con doble cara -->
             <div class="tarjeta" (click)="voltear()" [@flipState]="flip">
-                <div class=" frente">
+                <div class="frente">
                     <img [src]="caras()[0].image_uris.png" [alt]="caras()[0].printed_name || caras()[0].name">
                 </div>
                 <div class="detras">
