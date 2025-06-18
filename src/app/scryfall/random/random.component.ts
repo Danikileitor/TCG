@@ -21,8 +21,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       state('inactive', style({
         transform: 'rotateY(0)'
       })),
-      transition('active => inactive', animate('400ms ease-out')),
-      transition('inactive => active', animate('400ms ease-in'))
+      transition('active <=> inactive', animate('400ms ease-out'))
     ])
   ]
 })
@@ -37,12 +36,12 @@ export class ScryfallRandomComponent {
   flip = 'inactive';
 
   constructor(readonly service: ScryfallService) {
-    this.cargarDatos()
+    this.cargarDatos('es')
   }
 
-  async cargarDatos() {
+  async cargarDatos(idioma?: string) {
     this.simbolos.set(await firstValueFrom(this.service.getSymbology()))
-    this.getRandom('es')
+    this.getRandom(idioma)
   }
 
   async getRandom(idioma?: string) {
