@@ -21,7 +21,9 @@
                 </div>
             </div>
             }@else{
-            <img [src]="carta()?.image_uris?.png" alt="{{carta()?.printed_name || carta()?.name}}">
+            <div class="tarjeta">
+                <img [src]="carta()?.image_uris?.png" alt="{{carta()?.printed_name || carta()?.name}}">
+            </div>
             }
         </div>
         <div class="right">
