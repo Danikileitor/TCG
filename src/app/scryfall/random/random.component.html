@@ -1,9 +1,9 @@
 <div class="containerRandom">
     <div class="titulo">
         @if (caras().length > 0) {
-        <h3>{{caras()[0].printed_name}} // {{caras()[1].printed_name}}</h3>
+        <h3>{{caras()[0].printed_name || caras()[0].name}} // {{caras()[1].printed_name || caras()[1].name}}</h3>
         }@else {
-        <h2>{{carta()?.printed_name}}</h2>
+        <h2>{{carta()?.printed_name || carta()?.name}}</h2>
         }
         <h2>@for (color of identidad(); track $index){<img class="simbolos" [src]="color.svg_uri"
                 [alt]="color.symbol" />}</h2>
