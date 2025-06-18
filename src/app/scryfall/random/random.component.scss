@@ -48,7 +48,7 @@ hr {
             height: 306px;
             transition: transform 0.5s;
             transform-style: preserve-3d;
-            box-shadow: 10px 10px 43px -18px rgba(0, 0, 0, 0.75);
+            filter: drop-shadow(-10px 10px 43px rgba(0, 0, 0, 0.5));
 
             .frente,
             .detras {
