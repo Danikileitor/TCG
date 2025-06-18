@@ -38,6 +38,42 @@ hr {
 .carta {
     display: flex;
     gap: 2em;
+
+    .left {
+        perspective: 1000px;
+
+        img {
+            box-shadow: 10px 10px 43px -18px rgba(0, 0, 0, 0.75);
+            width: "219px";
+            height: "306px";
+        }
+
+        .tarjeta {
+            position: relative;
+            width: 219px;
+            height: 306px;
+            transition: transform 0.5s;
+            transform-style: preserve-3d;
+
+            .frente,
+            .detras {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                backface-visibility: hidden;
+            }
+
+            .detras {
+                transform: rotateY(180deg);
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
 }
 
 .datos {
