@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { ScryfallService } from './scryfall.service';
-import { ScryfallSymbol } from './scryfall-symbol.interface';
+import { ScryfallSymbol } from './scryfall-symbology.interface';
 
 @Component({
   selector: 'app-scryfall',

@@ -1,11 +1,12 @@
 import { Component, signal, WritableSignal } from '@angular/core';
-import { Card, CardFace } from '../scryfall-card.interface';
+import { CardFace, ScryfallCard } from '../scryfall-card.interface';
 import { ScryfallService } from '../scryfall.service';
-import { Datum, ScryfallSymbol } from '../scryfall-symbol.interface';
+import { Datum, ScryfallSymbol } from '../scryfall-symbology.interface';
 import { MatChipsModule } from '@angular/material/chips';
 import { RecordatoriosPipe } from '../../pipes/recordatorios.pipe';
 import { SimboloPipe } from '../../pipes/simbolo.pipe';
 import { firstValueFrom } from 'rxjs';
+import { ScryfallSet } from '../scryfall-set.interface';
 
 @Component({
   selector: 'app-scryfall-random',
@@ -15,7 +16,8 @@ import { firstValueFrom } from 'rxjs';
 })
 export class ScryfallRandomComponent {
   simbolos = signal<ScryfallSymbol | null>(null)
-  carta = signal<Card | null>(null)
+  set = signal<ScryfallSet | null>(null)
+  carta = signal<ScryfallCard | null>(null)
   coste = signal<Datum[]>([])
   coste2 = signal<Datum[]>([])
   identidad = signal<Datum[]>([])
@@ -29,7 +31,9 @@ export class ScryfallRandomComponent {
 
   async cargarDatos(idioma?: string) {
     this.simbolos.set(await firstValueFrom(this.service.getSymbology()))
-    this.getRandom(idioma)
+    await this.getRandom(idioma)
+    this.set.set(await firstValueFrom(this.service.getSet(this.carta()?.set_id!)))
+    console.log(this.set)
   }
 
   async getRandom(idioma?: string) {

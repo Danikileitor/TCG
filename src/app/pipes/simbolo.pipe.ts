@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ScryfallSymbol } from '../scryfall/scryfall-symbol.interface';
+import { ScryfallSymbol } from '../scryfall/scryfall-symbology.interface';
 
 @Pipe({
     name: 'simboloPipe'

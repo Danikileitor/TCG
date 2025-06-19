@@ -26,7 +26,7 @@
             </div>
             }
         </div>
-        <div class="right">
+        <div class="center">
             <ul class="datos">
                 @if (simbolos()) {
                 @if (caras().length > 0){
@@ -76,6 +76,13 @@
                     </mat-chip-set>
                 </li>
             </ul>
+        </div>
+        <div class="right">
+            <div class="set">
+                <div class="icono">
+                    <img [src]="carta()?.set_id">
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ScryfallSymbol } from './scryfall-symbol.interface';
-import { Card } from './scryfall-card.interface';
+import { ScryfallSymbol } from './scryfall-symbology.interface';
+import { ScryfallCard } from './scryfall-card.interface';
+import { ScryfallSet } from './scryfall-set.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,35 +15,39 @@ export class ScryfallService {
     return this.httpclient.get<ScryfallSymbol>('https://api.scryfall.com/symbology')
   }
 
+  getSet(id: string) {
+    return this.httpclient.get<ScryfallSet>('https://api.scryfall.com/sets/' + id)
+  }
+
   getRandom(idioma?: string) {
     if (idioma) {
-      return this.httpclient.get<Card>('https://api.scryfall.com/cards/random?q=lang:' + idioma)
+      return this.httpclient.get<ScryfallCard>('https://api.scryfall.com/cards/random?q=lang:' + idioma)
     } else {
-      return this.httpclient.get<Card>('https://api.scryfall.com/cards/random')
+      return this.httpclient.get<ScryfallCard>('https://api.scryfall.com/cards/random')
     }
   }
 
   getRandomAdventure(idioma?: string) {
     if (idioma) {
-      return this.httpclient.get<Card>('https://api.scryfall.com/cards/random?q=type:adventure+lang:' + idioma)
+      return this.httpclient.get<ScryfallCard>('https://api.scryfall.com/cards/random?q=type:adventure+lang:' + idioma)
     } else {
-      return this.httpclient.get<Card>('https://api.scryfall.com/cards/random?q=type:adventure')
+      return this.httpclient.get<ScryfallCard>('https://api.scryfall.com/cards/random?q=type:adventure')
     }
   }
 
   getCaras(idioma?: string) {
     if (idioma) {
-      return this.httpclient.get<Card>('https://api.scryfall.com/cards/mid/165/' + idioma)
+      return this.httpclient.get<ScryfallCard>('https://api.scryfall.com/cards/mid/165/' + idioma)
     } else {
-      return this.httpclient.get<Card>('https://api.scryfall.com/cards/mid/165')
+      return this.httpclient.get<ScryfallCard>('https://api.scryfall.com/cards/mid/165')
     }
   }
 
   getDoble(idioma?: string) {
     if (idioma) {
-      return this.httpclient.get<Card>('https://api.scryfall.com/cards/dis/153/' + idioma)
+      return this.httpclient.get<ScryfallCard>('https://api.scryfall.com/cards/dis/153/' + idioma)
     } else {
-      return this.httpclient.get<Card>('https://api.scryfall.com/cards/dis/153')
+      return this.httpclient.get<ScryfallCard>('https://api.scryfall.com/cards/dis/153')
     }
   }
 }
