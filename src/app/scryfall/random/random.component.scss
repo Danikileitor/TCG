@@ -40,6 +40,7 @@ hr {
     gap: 2em;
 
     .left {
+        width: min-content;
         perspective: 1000px;
 
         .tarjeta {
@@ -72,17 +73,33 @@ hr {
             }
         }
     }
-}
 
-.center {
-    .datos {
-        list-style-type: none;
-        white-space: pre-wrap;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5em;
+    .center {
+        width: 50%;
+
+        .datos {
+            list-style-type: none;
+            white-space: pre-wrap;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+    }
+
+    .right {
+        .set {
+            display: flex;
+
+            .icono {
+                img {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+        }
     }
 }
+
 
 mat-chip {
     height: 1em;
@@ -100,15 +117,13 @@ mat-chip {
     }
 }
 
-.right {
-    .set {
-        display: flex;
+@media (max-width: 768px) {
+    .carta {
+        flex-direction: column;
+        align-items: center;
+    }
 
-        .icono {
-            img {
-                width: 24px;
-                height: 24px;
-            }
-        }
+    .center {
+        width: 100%;
     }
 }
