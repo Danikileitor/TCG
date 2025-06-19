@@ -29,7 +29,7 @@ hr {
 .containerRandom {
     background-color: rgba($color: whitesmoke, $alpha: 0.5);
     margin: auto;
-    width: 70%;
+    width: 80%;
     padding: 1rem;
     border: 1em solid rgba($color: black, $alpha: 0.8);
     border-radius: 5%;
@@ -74,27 +74,41 @@ hr {
     }
 }
 
-
-.datos {
-    list-style-type: none;
-    white-space: pre-wrap;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
+.center {
+    .datos {
+        list-style-type: none;
+        white-space: pre-wrap;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
 }
 
 mat-chip {
     height: 1em;
     margin: 0;
     font-size: small;
+
+    &.legal {
+        @include mat.chips-overrides((outline-color: green, elevated-container-color: green));
+        color: whitesmoke;
+    }
+
+    &.not_legal {
+        @include mat.chips-overrides((outline-color: gray, elevated-container-color: gray));
+        color: whitesmoke;
+    }
 }
 
-.legal {
-    @include mat.chips-overrides((outline-color: green, elevated-container-color: green));
-    color: whitesmoke;
-}
+.right {
+    .set {
+        display: flex;
 
-.not_legal {
-    @include mat.chips-overrides((outline-color: gray, elevated-container-color: gray));
-    color: whitesmoke;
+        .icono {
+            img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
 }

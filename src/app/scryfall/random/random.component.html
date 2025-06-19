@@ -80,7 +80,16 @@
         <div class="right">
             <div class="set">
                 <div class="icono">
-                    <img [src]="carta()?.set_id">
+                    <img [src]="set()?.icon_svg_uri">
+                </div>
+                <div class="set-info">
+                    <div class="set-titulo">
+                        <h4>{{set()?.name}} ({{set()?.code?.toUpperCase()}})</h4>
+                    </div>
+                    <div class="set-datos">
+                        #{{carta()?.collector_number}}/{{set()?.card_count}} · {{carta()?.rarity}} · {{carta()?.lang}} ·
+                        {{carta()?.finishes}}
+                    </div>
                 </div>
             </div>
         </div>

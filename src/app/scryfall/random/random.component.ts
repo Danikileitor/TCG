@@ -33,32 +33,29 @@ export class ScryfallRandomComponent {
     this.simbolos.set(await firstValueFrom(this.service.getSymbology()))
     await this.getRandom(idioma)
     this.set.set(await firstValueFrom(this.service.getSet(this.carta()?.set_id!)))
-    console.log(this.set)
+    console.log(this.set())
+    console.log(this.carta());
   }
 
   async getRandom(idioma?: string) {
-    this.service.getRandom(idioma).subscribe({
-      next: (carta) => {
-        this.carta.set(carta)
-        if (typeof carta.card_faces !== 'undefined') {
-          this.caras.set(carta.card_faces)
-          if (typeof carta.card_faces[0].image_uris !== 'undefined') {
-            this.getCoste(carta.card_faces[0].mana_cost)
-            this.getCoste2(carta.card_faces[1].mana_cost)
-          } else if (carta.layout === 'adventure') {
-            this.getCoste(carta.card_faces[0].mana_cost)
-            this.getCoste2(carta.card_faces[1].mana_cost)
-          } else {
-            this.getCoste(carta.mana_cost)
-          }
-        } else {
-          this.getCoste(carta.mana_cost)
-        }
-        this.getIdentidad(carta.color_identity)
-        this.legalidades.set(Object.entries(carta.legalities))
-        console.log(this.carta())
+    const carta = await firstValueFrom(this.service.getRandom(idioma));
+    this.carta.set(carta);
+    if (typeof carta.card_faces !== 'undefined') {
+      this.caras.set(carta.card_faces);
+      if (typeof carta.card_faces[0].image_uris !== 'undefined') {
+        this.getCoste(carta.card_faces[0].mana_cost);
+        this.getCoste2(carta.card_faces[1].mana_cost);
+      } else if (carta.layout === 'adventure') {
+        this.getCoste(carta.card_faces[0].mana_cost);
+        this.getCoste2(carta.card_faces[1].mana_cost);
+      } else {
+        this.getCoste(carta.mana_cost);
       }
-    })
+    } else {
+      this.getCoste(carta.mana_cost);
+    }
+    this.getIdentidad(carta.color_identity);
+    this.legalidades.set(Object.entries(carta.legalities));
   }
 
   parseCost(cost: string): string[] {
