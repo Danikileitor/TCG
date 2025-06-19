@@ -12,7 +12,7 @@
         <div class="left">
             @if (caras().length > 0 && typeof caras()[0].image_uris !== 'undefined') {
             <!-- Carta con doble cara -->
-            <div class="tarjeta" (click)="voltear()" [@flipState]="flip">
+            <div class="tarjeta" (click)="voltear()" [class.volteada]="volteada">
                 <div class="frente">
                     <img [src]="caras()[0].image_uris.png" [alt]="caras()[0].printed_name || caras()[0].name">
                 </div>
@@ -30,7 +30,7 @@
             <ul class="datos">
                 @if (simbolos()) {
                 @if (caras().length > 0){
-                @if (flip === 'inactive') {
+                @if (!volteada) {
                 <li>@for (coste of coste(); track $index){<img class="simbolos" [src]="coste.svg_uri"
                         [alt]="coste.symbol" />}</li>
                 <li>{{caras()[0].printed_type_line}}</li>

@@ -6,24 +6,12 @@ import { MatChipsModule } from '@angular/material/chips';
 import { RecordatoriosPipe } from '../../pipes/recordatorios.pipe';
 import { SimboloPipe } from '../../pipes/simbolo.pipe';
 import { firstValueFrom } from 'rxjs';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-scryfall-random',
   imports: [MatChipsModule, RecordatoriosPipe, SimboloPipe],
   templateUrl: './random.component.html',
   styleUrl: './random.component.scss',
-  animations: [
-    trigger('flipState', [
-      state('active', style({
-        transform: 'rotateY(180deg)'
-      })),
-      state('inactive', style({
-        transform: 'rotateY(0)'
-      })),
-      transition('active <=> inactive', animate('400ms ease-out'))
-    ])
-  ]
 })
 export class ScryfallRandomComponent {
   simbolos = signal<ScryfallSymbol | null>(null)
@@ -33,7 +21,7 @@ export class ScryfallRandomComponent {
   identidad = signal<Datum[]>([])
   legalidades = signal<String[][]>([])
   caras = signal<CardFace[]>([])
-  flip = 'inactive';
+  volteada = false;
 
   constructor(readonly service: ScryfallService) {
     this.cargarDatos('es')
@@ -45,7 +33,7 @@ export class ScryfallRandomComponent {
   }
 
   async getRandom(idioma?: string) {
-    this.service.getRandom(idioma).subscribe({
+    this.service.getCaras(idioma).subscribe({
       next: (carta) => {
         this.carta.set(carta)
         if (typeof carta.card_faces !== 'undefined') {
@@ -103,7 +91,7 @@ export class ScryfallRandomComponent {
 
   voltear() {
     if (this.caras()) {
-      this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
+      this.volteada = !this.volteada
     }
   }
 }
