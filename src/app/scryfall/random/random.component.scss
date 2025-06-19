@@ -64,6 +64,10 @@ hr {
                 }
             }
 
+            .front {
+                transform: rotateY(0deg);
+            }
+
             .detras {
                 transform: rotateY(180deg);
             }
