@@ -64,16 +64,17 @@ hr {
                 }
             }
 
-            &.volteada {
+            .detras {
                 transform: rotateY(180deg);
             }
 
-            .detras {
+            &.volteada {
                 transform: rotateY(180deg);
             }
         }
     }
 }
+
 
 .datos {
     list-style-type: none;
