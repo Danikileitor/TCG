@@ -19,6 +19,18 @@ export class ScryfallService {
     return this.httpclient.get<ScryfallSet>('https://api.scryfall.com/sets/' + id)
   }
 
+  getCartaById(id: string) {
+    return this.httpclient.get<ScryfallCard>('https://api.scryfall.com/cards/' + id)
+  }
+
+  getCarta(set: string, num: number, idioma?: string) {
+    if (idioma) {
+      return this.httpclient.get<ScryfallCard>(`https://api.scryfall.com/cards/${set}/${num}/${idioma}`)
+    } else {
+      return this.httpclient.get<ScryfallCard>(`https://api.scryfall.com/cards/${set}/${num}`)
+    }
+  }
+
   getRandom(idioma?: string) {
     if (idioma) {
       return this.httpclient.get<ScryfallCard>('https://api.scryfall.com/cards/random?q=lang:' + idioma)
