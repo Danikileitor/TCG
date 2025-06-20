@@ -117,13 +117,13 @@ mat-chip {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) or (orientation: portrait) {
     .carta {
         flex-direction: column;
         align-items: center;
-    }
 
-    .center {
-        width: 100%;
+        .center {
+            width: 100%;
+        }
     }
 }
