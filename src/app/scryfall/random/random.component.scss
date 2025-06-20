@@ -37,7 +37,7 @@ hr {
 
 .carta {
     display: flex;
-    gap: 2em;
+    gap: 1em;
 
     .left {
         width: min-content;
@@ -87,13 +87,28 @@ hr {
     }
 
     .right {
+
         .set {
             display: flex;
+            gap: 0.5em;
+            color: whitesmoke;
+            background-color: black;
+            padding: 0.5em;
+            border-radius: 5px 5px 0 0;
 
             .icono {
                 img {
                     width: 24px;
                     height: 24px;
+                    margin: 0 auto;
+                    filter: invert(1);
+                }
+            }
+
+            .set-info {
+                .set-datos {
+                    font-size: small;
+                    white-space: nowrap;
                 }
             }
         }
