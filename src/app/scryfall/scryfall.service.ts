@@ -31,6 +31,10 @@ export class ScryfallService {
     }
   }
 
+  getSetReprints(set: string, name: string) {
+    return this.httpclient.get<ScryfallCard>(`https://api.scryfall.com/search?q=!"${name}"+set:${set}+lang:any`)
+  }
+
   getRandom(idioma?: string) {
     if (idioma) {
       return this.httpclient.get<ScryfallCard>('https://api.scryfall.com/cards/random?q=lang:' + idioma)
