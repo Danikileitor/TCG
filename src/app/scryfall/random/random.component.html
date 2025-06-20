@@ -87,8 +87,8 @@
                         <h4>{{set()?.name}} ({{set()?.code?.toUpperCase()}})</h4>
                     </div>
                     <div class="set-datos">
-                        #{{carta()?.collector_number}}/{{set()?.card_count}} · {{carta()?.rarity}} · {{carta()?.lang}} ·
-                        {{carta()?.finishes}}
+                        #{{carta()?.collector_number}}/{{set()?.card_count}} · {{rareza}} · {{idioma}} ·
+                        {{carta()?.finishes! | arrayConBarrasPipe}}
                     </div>
                 </div>
             </div>

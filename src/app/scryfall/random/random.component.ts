@@ -7,10 +7,13 @@ import { RecordatoriosPipe } from '../../pipes/recordatorios.pipe';
 import { SimboloPipe } from '../../pipes/simbolo.pipe';
 import { firstValueFrom } from 'rxjs';
 import { ScryfallSet } from '../scryfall-set.interface';
+import { getRareza, Rarezas } from '../scryfall-rareza.enum';
+import { getIdioma } from '../scryfall-idoma.enum';
+import { ArrayConBarras } from "../../pipes/arrayconbarras.pipe";
 
 @Component({
   selector: 'app-scryfall-random',
-  imports: [MatChipsModule, RecordatoriosPipe, SimboloPipe],
+  imports: [MatChipsModule, RecordatoriosPipe, SimboloPipe, ArrayConBarras],
   templateUrl: './random.component.html',
   styleUrl: './random.component.scss',
 })
@@ -23,7 +26,9 @@ export class ScryfallRandomComponent {
   identidad = signal<Datum[]>([])
   legalidades = signal<String[][]>([])
   caras = signal<CardFace[]>([])
-  volteada = false;
+  volteada = false
+  rareza: string | undefined
+  idioma: string | undefined
 
   constructor(readonly service: ScryfallService) {
     this.cargarDatos('es')
@@ -34,28 +39,30 @@ export class ScryfallRandomComponent {
     await this.getRandom(idioma)
     this.set.set(await firstValueFrom(this.service.getSet(this.carta()?.set_id!)))
     console.log(this.set())
-    console.log(this.carta());
+    console.log(this.carta())
   }
 
   async getRandom(idioma?: string) {
-    const carta = await firstValueFrom(this.service.getRandom(idioma));
-    this.carta.set(carta);
+    const carta = await firstValueFrom(this.service.getRandom(idioma))
+    this.carta.set(carta)
     if (typeof carta.card_faces !== 'undefined') {
-      this.caras.set(carta.card_faces);
+      this.caras.set(carta.card_faces)
       if (typeof carta.card_faces[0].image_uris !== 'undefined') {
-        this.getCoste(carta.card_faces[0].mana_cost);
-        this.getCoste2(carta.card_faces[1].mana_cost);
+        this.getCoste(carta.card_faces[0].mana_cost)
+        this.getCoste2(carta.card_faces[1].mana_cost)
       } else if (carta.layout === 'adventure') {
-        this.getCoste(carta.card_faces[0].mana_cost);
-        this.getCoste2(carta.card_faces[1].mana_cost);
+        this.getCoste(carta.card_faces[0].mana_cost)
+        this.getCoste2(carta.card_faces[1].mana_cost)
       } else {
-        this.getCoste(carta.mana_cost);
+        this.getCoste(carta.mana_cost)
       }
     } else {
-      this.getCoste(carta.mana_cost);
+      this.getCoste(carta.mana_cost)
     }
-    this.getIdentidad(carta.color_identity);
-    this.legalidades.set(Object.entries(carta.legalities));
+    this.getIdentidad(carta.color_identity)
+    this.legalidades.set(Object.entries(carta.legalities))
+    this.rareza = getRareza(carta.rarity, carta.lang)
+    this.idioma = getIdioma(carta.lang)
   }
 
   parseCost(cost: string): string[] {
