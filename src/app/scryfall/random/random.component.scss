@@ -147,8 +147,14 @@ mat-chip {
                 density: 0,
             ));
         @include mat.chips-overrides((outline-color: darkblue, elevated-container-color: darkblue));
+        font-size: medium;
     }
 }
+
+::ng-deep .mat-mdc-chip .mdc-evolution-chip__action {
+    padding: 0 6px !important;
+}
+
 
 @media (max-width: 768px) or (orientation: portrait) {
     .carta {
