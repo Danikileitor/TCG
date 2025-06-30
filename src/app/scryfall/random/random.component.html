@@ -69,7 +69,7 @@
                 }
                 <li>✒️{{carta()?.artist}}</li>
                 <li>
-                    <mat-chip-set aria-label="Fish selection">
+                    <mat-chip-set aria-label="Legalidad">
                         @for (legalidad of legalidades(); track legalidad) {
                         <mat-chip [class]="legalidad[1]">{{legalidad[0].charAt(0).toUpperCase()+legalidad[0].slice(1)}}
                         </mat-chip>}
@@ -92,7 +92,13 @@
                     </div>
                 </div>
             </div>
-            <div class="idiomas"></div>
+            <div class="idiomas">
+                <mat-chip-set aria-label="Idiomas">
+                    @for (reprint of setReprints(); track reprint) {
+                    <mat-chip class="idioma">{{reprint.lang.toUpperCase()}}
+                    </mat-chip>}
+                </mat-chip-set>
+            </div>
         </div>
     </div>
 </div>

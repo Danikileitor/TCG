@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ScryfallSymbol } from './scryfall-symbology.interface';
 import { ScryfallCard } from './scryfall-card.interface';
 import { ScryfallSet } from './scryfall-set.interface';
+import { catchError, firstValueFrom, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +32,9 @@ export class ScryfallService {
     }
   }
 
-  getSetReprints(set: string, name: string) {
-    return this.httpclient.get<ScryfallCard>(`https://api.scryfall.com/search?q=!"${name}"+set:${set}+lang:any`)
+  async getSetReprints(set: string, name: string) {
+    const response = await firstValueFrom(this.httpclient.get<any>(`https://api.scryfall.com/cards/search?q=!"${name}"+set:${set}+lang:any+unique:prints`))
+    return response.data
   }
 
   getRandom(idioma?: string) {

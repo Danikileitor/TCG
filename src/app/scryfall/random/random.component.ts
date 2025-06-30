@@ -29,6 +29,7 @@ export class ScryfallRandomComponent {
   volteada = false
   rareza: string | undefined
   idioma: string | undefined
+  setReprints = signal<ScryfallCard[]>([])
 
   constructor(readonly service: ScryfallService) {
     this.cargarDatos('es')
@@ -38,8 +39,10 @@ export class ScryfallRandomComponent {
     this.simbolos.set(await firstValueFrom(this.service.getSymbology()))
     await this.getRandom(idioma)
     this.set.set(await firstValueFrom(this.service.getSet(this.carta()?.set_id!)))
+    await this.getSetReprints(this.carta()!?.set, this.carta()!?.name)
     console.log(this.set())
     console.log(this.carta())
+    console.log(this.setReprints())
   }
 
   async getRandom(idioma?: string) {
@@ -95,6 +98,10 @@ export class ScryfallRandomComponent {
       return this.simbolos()?.data?.find((s) => s.symbol == '{' + color + '}')
     }) : new Array(this.simbolos()?.data?.find((s) => s.symbol == '{C}'))
     this.identidad.set(simbolos as Datum[])
+  }
+
+  async getSetReprints(set: string, nombre: string) {
+    await this.service.getSetReprints(set, nombre).then(((reprints) => { this.setReprints.set(reprints) }))
   }
 
   voltear() {
