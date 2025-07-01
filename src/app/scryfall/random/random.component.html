@@ -87,7 +87,7 @@
                         <h4>{{set()?.name}} ({{set()?.code?.toUpperCase()}})</h4>
                     </div>
                     <div class="set-datos">
-                        #{{carta()?.collector_number}}/{{set()?.card_count}} · {{rareza}} · {{idioma}} ·
+                        #{{carta()?.collector_number}}/{{set()?.printed_size}} · {{rareza}} · {{idioma}} ·
                         {{carta()?.finishes! | arrayConBarrasPipe}}
                     </div>
                 </div>
@@ -100,6 +100,12 @@
                 </mat-chip-set>
             </div>
             <div class="reprints">
+                <mat-list>
+                    <mat-list-item>
+                        <mat-icon matListItemIcon>arrow_right</mat-icon>
+                        <p matListItemLine>testeo</p>
+                    </mat-list-item>
+                </mat-list>
             </div>
         </div>
     </div>
