@@ -4,7 +4,7 @@ import { ScryfallService } from '../scryfall.service';
 import { Datum, ScryfallSymbol } from '../scryfall-symbology.interface';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
 import { RecordatoriosPipe } from '../../pipes/recordatorios.pipe';
 import { SimboloPipe } from '../../pipes/simbolo.pipe';
 import { firstValueFrom } from 'rxjs';
@@ -15,7 +15,7 @@ import { ArrayConBarras } from "../../pipes/arrayconbarras.pipe";
 
 @Component({
   selector: 'app-scryfall-random',
-  imports: [MatListModule, MatIconModule, MatChipsModule, RecordatoriosPipe, SimboloPipe, ArrayConBarras],
+  imports: [MatTableModule, MatIconModule, MatChipsModule, RecordatoriosPipe, SimboloPipe, ArrayConBarras],
   templateUrl: './random.component.html',
   styleUrl: './random.component.scss',
 })

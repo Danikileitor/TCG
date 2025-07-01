@@ -155,10 +155,6 @@ mat-chip {
     padding: 0 6px !important;
 }
 
-mat-list {
-    @include mat.list-overrides((list-item-leading-icon-start-space: 0, list-item-leading-icon-end-space: 0));
-}
-
 
 @media (max-width: 768px) or (orientation: portrait) {
     .carta {
